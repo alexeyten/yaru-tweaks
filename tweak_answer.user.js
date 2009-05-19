@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name           Tweak answer
-// @version        1.1.5
+// @version        1.2.0
 // @namespace      http://gm.lynn.ru/
 // @description    Кастомизация формы ответа
 // @copyright      2009, Alexey Ten (Lynn) (http://lynn.ru)
@@ -43,9 +43,10 @@ var tweak_answer = function() {
                 var title = document.createElement('input')
                 title.name = 'title'
                 title.disabled = !tb.checked
+                title.setAttribute('style', 'width: 100%; border: 0 none; padding: 2px 1px')
                 title.style.display = tb.checked ? '' : 'none'
-                var body = form.elements['body']
-                body.parentNode.insertBefore(title, body)
+                var title_h = y5.Dom.getDescendants(form, 'td', 'text')[1]
+                title_h.insertBefore(title, title_h.firstChild)
                 tb.addEventListener('click', function() {
                     title.disabled = !this.checked;
                     title.style.display = this.checked ? '' : 'none'
