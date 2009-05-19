@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name           Tweak answer
-// @version        1.1.0
+// @version        1.1.5
 // @namespace      http://gm.lynn.ru/
 // @description    Кастомизация формы ответа
 // @copyright      2009, Alexey Ten (Lynn) (http://lynn.ru)
@@ -8,13 +8,12 @@
 // @exclude        */update_session.xml*
 // ==/UserScript==
 
+;(function() {
 var _win = (typeof unsafeWindow != 'undefined') ? unsafeWindow : window
-if (!_win.Friends) {
-    return
-}
+if (typeof _win.y5 == 'undefined') return
 
 var tweak_answer = function() {
-    var form_preparer = function(form) {
+    var form_preparer = function(form) { // {{{
         var type = form.elements['type'].value
         if (type == 'link' || type == 'subscribe') {
             return
@@ -44,9 +43,13 @@ var tweak_answer = function() {
                 var title = document.createElement('input')
                 title.name = 'title'
                 title.disabled = !tb.checked
+                title.style.display = tb.checked ? '' : 'none'
                 var body = form.elements['body']
                 body.parentNode.insertBefore(title, body)
-                tb.addEventListener('click', function() {title.disabled = !this.checked;}, true)
+                tb.addEventListener('click', function() {
+                    title.disabled = !this.checked;
+                    title.style.display = this.checked ? '' : 'none'
+                }, true)
             }
         } else if (type == 'congratulation') {
             var e = form.elements['event']
@@ -62,9 +65,10 @@ var tweak_answer = function() {
             lbl.appendChild(document.createTextNode('с чем?'))
             b.parentNode.insertBefore(lbl, e)
         }
-    }
+    } // }}}
 
-    var add_congratulation = function(r) {
+    var add_congratulation = function(r) { // {{{
+        var oclk = function(a) { return (function() {return a;}) }
         var s = y5.Dom.getDescendant(r.control, 'div', 'b-actions-select')
         var links = s.getElementsByTagName('a')
         for (var i = 2; i < links.length; i++) {
@@ -79,7 +83,7 @@ var tweak_answer = function() {
                 var a = document.createElement('a')
                 a.href = links[i].href
                 a.innerHTML = links[i].innerHTML
-                a.setAttribute('onclick', "return " + l_par.toSource())
+                a.onclick = oclk(l_par)
                 links[i].parentNode.appendChild(a)
                 links[i].parentNode.removeChild(links[i])
                 return
@@ -99,21 +103,41 @@ var tweak_answer = function() {
                 title: r.commonParams.author_title },
             '', '', ''
         ]
-        a.setAttribute('onclick', "return " + _par.toSource())
-    }
+        a.onclick = oclk(_par)
+    } // }}}
 
-    var p = Friends.ActionsControl.Constructor.prototype
-    var old_createForm = p.createForm
-    var old_initActionsMenu = p.initActionsMenu
+    var patch_ActionsControl = function(ac) { // {{{
+        var p = ac.Constructor.prototype
+        var old_createForm = p.createForm
+        var old_initActionsMenu = p.initActionsMenu
 
-    p.createForm = function(/* arguments */) {
-        old_createForm.apply(this, arguments)
-        form_preparer(this.form)
-    }
-    p.initActionsMenu = function(/* arguments */) {
-        add_congratulation(this)
-        old_initActionsMenu.apply(this, arguments)
+        p.createForm = function(/* arguments */) {
+            old_createForm.apply(this, arguments)
+            form_preparer(this.form)
+        }
+        p.initActionsMenu = function(/* arguments */) {
+            add_congratulation(this)
+            old_initActionsMenu.apply(this, arguments)
+        }
+    } // }}}
+
+    var ac = y5.moduleObject('{Friends}.ActionsControl')
+    if (ac) {
+        patch_ActionsControl(ac)
+    } else {
+        var old_y5_loaded = y5.loaded
+        y5.loaded = function(module) {
+            if (y5.moduleName(module) == 'Friends:ActionsControl') {
+                patch_ActionsControl(y5.moduleObject(module))
+            }
+            old_y5_loaded.apply(this, arguments)
+        }
     }
 }
 
-location.href = "javascript:("+encodeURI(tweak_answer.toSource())+")();"
+if (window.opera) {
+    tweak_answer()
+} else {
+    location.href = "javascript:("+encodeURI(tweak_answer.toSource())+")();"
+}
+})()
