@@ -18,7 +18,7 @@ var tweak_answer = function() {
         if (type == 'link' || type == 'subscribe') {
             return
         }
-        if (type == 'text' || type == 'photo') {
+        if (type == 'text' || type == 'photo' || type == 'congratulation') {
             var tb = form.elements['trackback']
             if (!tb) {
                 var t = form.elements['type']
@@ -39,20 +39,23 @@ var tweak_answer = function() {
             lbl.setAttribute('for', tb.id)
             lbl.appendChild(document.createTextNode('у себя'))
             tb.parentNode.insertBefore(lbl, tb.nextSibling)
-            if (type == 'text') {
-                var title = document.createElement('input')
-                title.name = 'title'
-                title.disabled = !tb.checked
-                title.setAttribute('style', 'width: 100%; border: 0 none; padding: 2px 1px')
-                title.style.display = tb.checked ? '' : 'none'
-                var title_h = y5.Dom.getDescendants(form, 'td', 'text')[1]
-                title_h.insertBefore(title, title_h.firstChild)
-                tb.addEventListener('click', function() {
-                    title.disabled = !this.checked;
-                    title.style.display = this.checked ? '' : 'none'
-                }, true)
-            }
-        } else if (type == 'congratulation') {
+        }
+
+        if (type == 'text') {
+            var title = document.createElement('input')
+            title.name = 'title'
+            title.disabled = !tb.checked
+            title.setAttribute('style', 'width: 100%; border: 0 none; padding: 2px 1px')
+            title.style.display = tb.checked ? '' : 'none'
+            var title_h = y5.Dom.getDescendants(form, 'td', 'text')[1]
+            title_h.insertBefore(title, title_h.firstChild)
+            tb.addEventListener('click', function() {
+                title.disabled = !this.checked;
+                title.style.display = this.checked ? '' : 'none'
+            }, true)
+        }
+
+        if (type == 'congratulation') {
             var e = form.elements['event']
             if (e.value == 'birthday') {
                 return
