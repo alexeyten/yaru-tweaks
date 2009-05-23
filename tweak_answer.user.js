@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name           Tweak answer
-// @version        1.2.0
+// @version        1.2.1
 // @namespace      http://gm.lynn.ru/
 // @description    Кастомизация формы ответа
 // @copyright      2009, Alexey Ten (Lynn) (http://lynn.ru)
@@ -9,10 +9,10 @@
 // ==/UserScript==
 
 ;(function() {
-var _win = (typeof unsafeWindow != 'undefined') ? unsafeWindow : window
-if (typeof _win.y5 == 'undefined') return
+if (/update_session.xml/.test(document.location.pathname)) return
 
 var tweak_answer = function() {
+    if (typeof window.y5 == 'undefined') return
     var form_preparer = function(form) { // {{{
         var type = form.elements['type'].value
         if (type == 'link' || type == 'subscribe') {
@@ -139,9 +139,5 @@ var tweak_answer = function() {
     }
 }
 
-if (window.opera) {
-    tweak_answer()
-} else {
-    location.href = "javascript:("+encodeURI(tweak_answer.toSource())+")();"
-}
+location.href = "javascript:("+encodeURI(tweak_answer.toString())+")();"
 })()
