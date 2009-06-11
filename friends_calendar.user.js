@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name           Friends calendar
-// @version        0.9b
+// @version        1.0
 // @namespace      http://gm.lynn.ru/
 // @description    Календарь для страницы «Что нового»
 // @copyright      2009, Alexey Ten (Lynn) (http://lynn.ru)
@@ -39,7 +39,7 @@ var calendar = function() {
     y5.Events.observe('y5:Calendar:selectDate',
         function(d){
             var a = new Date(d.getFullYear(), d.getMonth(), d.getDate()+1)
-            y5.Url().replaceParams({tb: a.getTime() + '000'}).go()
+            y5.Url().replaceParams({tb: (a.getTime()-1) + '999'}).go()
         },
         comp, true)
 }
