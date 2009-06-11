@@ -18,7 +18,7 @@ tweak_answer.user.js
 
 Благодарности [Vessna](http://vessna005.ya.ru/)
 
-[История изменений](http://github.com/alexeyten/yaru-tweaks/raw/master/tweak_answer.changelog.markdown)
+[История изменений](http://github.com/alexeyten/yaru-tweaks/raw/master/tweak_answer.changelog)
 
 
 friends_calendar.user.js changelog
@@ -30,4 +30,4 @@ friends_calendar.user.js changelog
 
 Работоспособность скрипта проверялась в Firefox.
 
-[История изменений](http://github.com/alexeyten/yaru-tweaks/raw/master/friends_calendar.changelog.markdown)
+[История изменений](http://github.com/alexeyten/yaru-tweaks/raw/master/friends_calendar.changelog)
