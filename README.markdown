@@ -21,8 +21,8 @@ tweak_answer.user.js
 [История изменений](http://github.com/alexeyten/yaru-tweaks/raw/master/tweak_answer.changelog)
 
 
-friends_calendar.user.js changelog
-----------------------------------
+friends_calendar.user.js
+------------------------
 
 Последняя версия 1.0 [(установить)](http://github.com/alexeyten/yaru-tweaks/raw/fc1.0/friends_calendar.user.js)
 
