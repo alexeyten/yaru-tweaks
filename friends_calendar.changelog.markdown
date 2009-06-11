@@ -1,4 +1,0 @@
-### friends_calendar.user.js changelog
-
-#### Версия 1.0
-Первый релиз
