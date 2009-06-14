@@ -28,6 +28,6 @@ friends_calendar.user.js
 
 * добавляет в ленту «что нового» календарь для перехода на конкретный день.
 
-Работоспособность скрипта проверялась в Firefox.
+Работоспособность скрипта проверялась в Firefox, Epyphany, Opera и Google Chrome.
 
 [История изменений](http://github.com/alexeyten/yaru-tweaks/raw/master/friends_calendar.changelog)

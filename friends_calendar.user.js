@@ -11,7 +11,7 @@
 // ==/UserScript==
 
 ;(function() {
-var calendar = function() {
+var the_script = function() {
     try {
         if (g_globals.current_location.page !== 'friends') return
     } catch(e) {
@@ -30,7 +30,7 @@ var calendar = function() {
     comp.onclick = function() { return { limitDates: { min: null, max: new Date() } } }
     jQuery(comp).addClass('y5-c-Components-Calendar-TextInput b-pseudo-link')
         .css({position: 'absolute', margin: '0.5em'})
-        .html('<input class="y5-Calendar-result-date" type="hidden" value="' + tb + '"/>' +
+        .html('<input class="y5-Calendar-result-date" type="hidden" value="' + tb + '" />' +
             '<span class="y5-Calendar-button">календарь</span>')
         .prependTo('td.b-page-body .b-posts-first')
 
@@ -44,5 +44,12 @@ var calendar = function() {
         comp, true)
 }
 
-location.href = "javascript:("+encodeURI(calendar.toString())+")();"
-})()
+if (window.opera) {
+    the_script()
+} else {
+    var script = document.createElement('script')
+    script.type = 'application/javascript'
+    script.appendChild(document.createTextNode('(' + the_script.toString() + ')()'))
+    document.body.appendChild(script)
+}
+})();
