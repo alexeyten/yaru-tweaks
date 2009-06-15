@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name           Tweak answer
-// @version        1.2.1
+// @version        1.2.2
 // @namespace      http://gm.lynn.ru/
 // @description    Кастомизация формы ответа
 // @copyright      2009, Alexey Ten (Lynn) (http://lynn.ru)
@@ -11,7 +11,7 @@
 ;(function() {
 if (/update_session.xml/.test(document.location.pathname)) return
 
-var tweak_answer = function() {
+var the_script = function() {
     if (typeof window.y5 == 'undefined') return
     var form_preparer = function(form) { // {{{
         var type = form.elements['type'].value
@@ -139,5 +139,12 @@ var tweak_answer = function() {
     }
 }
 
-location.href = "javascript:("+encodeURI(tweak_answer.toString())+")();"
-})()
+if (window.opera) {
+    the_script()
+} else {
+    var script = document.createElement('script')
+    script.type = 'application/javascript'
+    script.appendChild(document.createTextNode('(' + the_script.toString() + ')()'))
+    document.body.appendChild(script)
+}
+})();
