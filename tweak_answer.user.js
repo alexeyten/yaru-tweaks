@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name           Tweak answer
-// @version        1.2.2
+// @version        1.3
 // @namespace      http://gm.lynn.ru/
 // @description    Кастомизация формы ответа
 // @copyright      2009, Alexey Ten (Lynn) (http://lynn.ru)
@@ -15,9 +15,10 @@ var the_script = function() {
     if (typeof window.y5 == 'undefined') return
     var form_preparer = function(form) { // {{{
         var type = form.elements['type'].value
-        if (type == 'link' || type == 'subscribe') {
+        if (type == 'subscribe') {
             return
         }
+
         if (type == 'text' || type == 'photo' || type == 'congratulation') {
             var tb = form.elements['trackback']
             if (!tb) {
@@ -53,6 +54,27 @@ var the_script = function() {
                 title.disabled = !this.checked;
                 title.style.display = this.checked ? '' : 'none'
             }, true)
+        }
+
+        if (type == 'link') {
+            var title_h = y5.Dom.getDescendants(form, 'p', 'b-write-short-text')[0]
+            var edit_fields = document.createElement('span')
+            edit_fields.className = 'b-pseudo-link'
+            edit_fields.setAttribute('style', 'float: right; margin: 0.2em 0 -2em')
+            edit_fields.appendChild(document.createTextNode('Изменить заголовок и ссылку'))
+            title_h.appendChild(edit_fields)
+            edit_fields.addEventListener('click', function() {
+                var title = form.elements['title']
+                title.type = 'text'
+                title.setAttribute('style', 'width: 100%; padding: 1px;')
+                title_h.insertBefore(title, title_h.firstChild)
+                var url = form.elements['URL']
+                url.type = 'text'
+                url.setAttribute('style', 'width: 100%; padding: 1px; margin-top: 0.3em')
+                title_h.appendChild(url)
+                title_h.removeChild(edit_fields)
+            }, true)
+
         }
 
         if (type == 'congratulation') {
