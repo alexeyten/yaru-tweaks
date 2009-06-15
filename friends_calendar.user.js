@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name           Friends calendar
-// @version        1.0
+// @version        1.0.1
 // @namespace      http://gm.lynn.ru/
 // @description    Календарь для страницы «Что нового»
 // @copyright      2009, Alexey Ten (Lynn) (http://lynn.ru)
@@ -32,7 +32,7 @@ var the_script = function() {
         .css({position: 'absolute', margin: '0.5em'})
         .html('<input class="y5-Calendar-result-date" type="hidden" value="' + tb + '" />' +
             '<span class="y5-Calendar-button">календарь</span>')
-        .prependTo('td.b-page-body .b-posts-first')
+        .prependTo('td.b-page-body .h-posts-decor')
 
 
     y5.Components.init(comp)
