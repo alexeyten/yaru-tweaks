@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name           Tweak answer
-// @version        1.3
+// @version        1.3.1
 // @namespace      http://gm.lynn.ru/
 // @description    Кастомизация формы ответа
 // @copyright      2009, Alexey Ten (Lynn) (http://lynn.ru)
@@ -9,7 +9,8 @@
 // ==/UserScript==
 
 ;(function() {
-if (/update_session.xml/.test(document.location.pathname)) return
+var p = document.location.pathname
+if (/update_session\.xml/.test(p) || /post(s_add|_edit).+\.xml/.test(p)) return
 
 var the_script = function() {
     if (typeof window.y5 == 'undefined') return
@@ -164,6 +165,6 @@ if (window.opera) {
     var script = document.createElement('script')
     script.type = 'application/javascript'
     script.appendChild(document.createTextNode('(' + the_script.toString() + ')()'))
-    document.body.appendChild(script)
+    document.getElementsByTagName('head')[0].appendChild(script)
 }
 })();

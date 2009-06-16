@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name           Friends calendar
-// @version        1.0.1
+// @version        1.0.2
 // @namespace      http://gm.lynn.ru/
 // @description    Календарь для страницы «Что нового»
 // @copyright      2009, Alexey Ten (Lynn) (http://lynn.ru)
@@ -50,6 +50,6 @@ if (window.opera) {
     var script = document.createElement('script')
     script.type = 'application/javascript'
     script.appendChild(document.createTextNode('(' + the_script.toString() + ')()'))
-    document.body.appendChild(script)
+    document.getElementsByTagName('head')[0].appendChild(script)
 }
 })();
