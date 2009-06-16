@@ -7,7 +7,7 @@ GreaseMonkey скрипты для Ярушки
 tweak_answer.user.js
 --------------------
 
-Последняя версия 1.3 [(установить)](http://github.com/alexeyten/yaru-tweaks/raw/1.3/tweak_answer.user.js)
+Последняя версия 1.3.1 [(установить)](http://github.com/alexeyten/yaru-tweaks/raw/1.3.1/tweak_answer.user.js)
 
 * добавляет галочку «у себя» к форме написания комментария;
 * добавляет пункт «поздравить!» в список ответных действий;
