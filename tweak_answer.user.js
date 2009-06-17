@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name           Tweak answer
-// @version        1.3.1
+// @version        1.3.5
 // @namespace      http://gm.lynn.ru/
 // @description    Кастомизация формы ответа
 // @copyright      2009, Alexey Ten (Lynn) (http://lynn.ru)
@@ -20,7 +20,8 @@ var the_script = function() {
             return
         }
 
-        if (type == 'text' || type == 'photo' || type == 'congratulation') {
+        if (type == 'text' || type == 'photo'
+            || type == 'slashme' || type == 'congratulation') {
             var tb = form.elements['trackback']
             if (!tb) {
                 var t = form.elements['type']
