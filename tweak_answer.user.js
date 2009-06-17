@@ -25,7 +25,6 @@ var the_script = function() {
             if (!tb) {
                 var t = form.elements['type']
                 tb = document.createElement('input')
-                tb.value = 1
                 tb.name = 'trackback'
                 t.parentNode.insertBefore(tb, t)
             } else if (type == 'photo') {
@@ -35,6 +34,7 @@ var the_script = function() {
             }
             tb.type = 'checkbox'
             tb.id = 'lbl' + (new Date().getTime())
+            tb.value = 1
             tb.style.marginRight = '3px'
             tb.style.verticalAlign = 'middle'
             var lbl = document.createElement('label')
