@@ -26,7 +26,7 @@ tweak_answer.user.js
 friends_calendar.user.js
 ------------------------
 
-Последняя версия 1.0.1 [(установить)](http://github.com/alexeyten/yaru-tweaks/raw/fc1.0.1/friends_calendar.user.js)
+Последняя версия 1.0.2 [(установить)](http://github.com/alexeyten/yaru-tweaks/raw/fc1.0.2/friends_calendar.user.js)
 
 * добавляет в ленту «что нового» календарь для перехода на конкретный день.
 

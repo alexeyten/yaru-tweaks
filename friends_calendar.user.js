@@ -44,12 +44,5 @@ var the_script = function() {
         comp, true)
 }
 
-if (window.opera) {
-    the_script()
-} else {
-    var script = document.createElement('script')
-    script.type = 'application/javascript'
-    script.appendChild(document.createTextNode('(' + the_script.toString() + ')()'))
-    document.getElementsByTagName('head')[0].appendChild(script)
-}
+window.setTimeout('(' + the_script.toString() + ')()', 0);
 })();
