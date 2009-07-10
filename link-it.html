@@ -1,0 +1,44 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title>Букмарклет &laquo;поделиться ссылкой&raquo;</title>
+</head>
+<body>
+<h1>Букмарклет &laquo;поделиться ссылкой&raquo;</h1>
+
+<!-- Версия для правильных браузеров -->
+<!--[if !IE]>-->
+<p>
+<a href="javascript:(function(){var D=document;var f=D.createElement('form');f.action='http://my.ya.ru/request_to_session.xml';f.method='post';(D.documentElement||D.body).appendChild(f);f.style.display='none';f.innerHTML='<input name=body><input name=title><input name=URL><input name=YARU_retpath value=/posts_add_link.xml>';E=f.elements;if (!window.getSelection().isCollapsed){var d=document.createElement('div');d.appendChild(window.getSelection().getRangeAt(0).cloneContents());E['body'].value=d.innerHTML;}E['title'].value=D.title;E['URL'].value=D.location;f.submit();})()">Поделится ссылкой</a>
+</p>
+
+<script type="text/javascript">
+function x() {
+    var D=document;
+    var f=D.createElement('form');
+    f.action='http://my.ya.ru/request_to_session.xml';
+    f.method='post';
+    (D.documentElement||D.body).appendChild(f);
+    f.style.display='none';
+    f.innerHTML='<input name=body><input name=title><input name=URL><input name=YARU_retpath value=/posts_add_link.xml>';
+    E=f.elements;
+    if (!window.getSelection().isCollapsed){
+        var d = D.createElement('div');
+        d.appendChild(window.getSelection().getRangeAt(0).cloneContents());
+        E['body'].value=d.innerHTML;
+    }
+    E['title'].value=D.title;
+    E['URL'].value=D.location;
+    f.submit();
+}
+</script>
+<!--<![endif]-->
+
+<!-- Версия для IE -->
+<!--[if IE]>
+<p>
+<a href="javascript:(function(){var D=document;var f=D.createElement('form');f.action='http://my.ya.ru/request_to_session.xml';f.method='post';(D.documentElement||D.body).appendChild(f);f.style.display='none';f.innerHTML='<input name=body><input name=title><input name=URL><input name=YARU_retpath value=/posts_add_link.xml>';E=f.elements;E['body'].value=D.selection.createRange().htmlText;E['title'].value=D.title;E['URL'].value=D.location;f.submit();})()">Поделится ссылкой</a>
+</p>
+<![endif]-->
+</body>
+</html>
