@@ -30,7 +30,7 @@ var the_script = function() {
                 t.parentNode.insertBefore(tb, t)
             } else if (type == 'photo') {
                 tb.checked = false
-            } else {
+            } else if (tb.value == '1') {
                 tb.checked = true
             }
             tb.type = 'checkbox'
