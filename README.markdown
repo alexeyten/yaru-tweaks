@@ -7,7 +7,7 @@ GreaseMonkey скрипты для Ярушки
 tweak_answer.user.js
 --------------------
 
-Последняя версия 1.3.6 [(установить)](http://github.com/alexeyten/yaru-tweaks/raw/1.3.6/tweak_answer.user.js)
+Последняя версия 1.3.7 [(установить)](http://github.com/alexeyten/yaru-tweaks/raw/1.3.7/tweak_answer.user.js)
 
 * добавляет галочку «у себя» к форме написания комментария;
 * добавляет пункт «поздравить!» в список ответных действий;
@@ -16,12 +16,11 @@ tweak_answer.user.js
 * в форме ответного поздравления можно исправить событие (кроме поздравлений с ДР);
 * по умолчанию ответные фотки не публикуются в своём дневнике.
 
-Работоспособность скрипта проверялась в Firefox, Epiphany, Opera и Google Chrome.
+Работоспособность скрипта проверялась в Firefox, Epiphany, Opera и Google Chrome 2.
 
 Благодарности [Vessna](http://vessna005.ya.ru/)
 
 [История изменений](http://github.com/alexeyten/yaru-tweaks/raw/master/tweak_answer.changelog)
-
 
 
 friends_calendar.user.js
