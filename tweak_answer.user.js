@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name           Tweak answer
-// @version        1.3.7
+// @version        1.3.8
 // @namespace      http://gm.lynn.ru/
 // @description    Кастомизация формы ответа
 // @copyright      2009, Alexey Ten (Lynn) (http://lynn.ru)
@@ -162,5 +162,12 @@ var the_script = function() {
     }
 }
 
-window.setTimeout('(' + the_script.toString() + ')()', 0);
+if (window.opera) {
+    the_script()
+} else {
+    var script = document.createElement('script')
+    script.type = 'application/javascript'
+    script.appendChild(document.createTextNode('(' + the_script.toString() + ')()'))
+    document.getElementsByTagName('head')[0].appendChild(script)
+}
 })();
