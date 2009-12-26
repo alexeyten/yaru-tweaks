@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name           Tweak answer
-// @version        1.3.8
+// @version        1.3.9
 // @namespace      http://gm.lynn.ru/
 // @description    Кастомизация формы ответа
 // @copyright      2009, Alexey Ten (Lynn) (http://lynn.ru)
@@ -134,6 +134,11 @@ var the_script = function() {
     } // }}}
 
     var patch_ActionsControl = function(ac) { // {{{
+        if (ac.$tweaked) {
+            console.log('already tweaked')
+            return
+        }
+        ac.$tweaked = true
         var p = ac.Constructor.prototype
         var old_createForm = p.createForm
         var old_initActionsMenu = p.initActionsMenu
