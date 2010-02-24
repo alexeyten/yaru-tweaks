@@ -135,7 +135,6 @@ var the_script = function() {
 
     var patch_ActionsControl = function(ac) { // {{{
         if (ac.$tweaked) {
-            console.log('already tweaked')
             return
         }
         ac.$tweaked = true
