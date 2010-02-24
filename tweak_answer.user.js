@@ -61,22 +61,22 @@ var the_script = function() {
         }
 
         if (type == 'link') {
-            var title_h = y5.Dom.getDescendants(form, 'p', 'b-write-short-text')[0]
+            var title_h = y5.Dom.getDescendants(form, 'div', 'b-quote-source')[0]
             var edit_fields = document.createElement('span')
             edit_fields.className = 'b-pseudo-link'
-            edit_fields.setAttribute('style', 'float: right; margin: 0.2em 0 -2em')
+            edit_fields.setAttribute('style', 'float: right; margin: -1.6em 0 0; color:#000; font-size:0.8em')
             edit_fields.appendChild(document.createTextNode('Изменить заголовок и ссылку'))
-            title_h.appendChild(edit_fields)
+            title_h.parentNode.insertBefore(edit_fields, title_h.nextSibling)
             edit_fields.addEventListener('click', function() {
-                var title = form.elements['title']
-                title.type = 'text'
-                title.setAttribute('style', 'width: 100%; padding: 1px;')
-                title_h.insertBefore(title, title_h.firstChild)
                 var url = form.elements['URL']
                 url.type = 'text'
-                url.setAttribute('style', 'width: 100%; padding: 1px; margin-top: 0.3em')
-                title_h.appendChild(url)
-                title_h.removeChild(edit_fields)
+                url.setAttribute('style', 'width: 98%; padding: 1px; margin-top: 0.3em')
+                title_h.parentNode.insertBefore(url, title_h.nextSibling)
+                var title = form.elements['title']
+                title.type = 'text'
+                title.setAttribute('style', 'width: 98%; padding: 1px')
+                title_h.parentNode.insertBefore(title, title_h.nextSibling)
+                title_h.parentNode.removeChild(edit_fields)
             }, true)
 
         }
