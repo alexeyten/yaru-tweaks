@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name           Tweak answer
-// @version        1.3.9
+// @version        1.3.10
 // @namespace      http://gm.lynn.ru/
 // @description    Кастомизация формы ответа
 // @copyright      2009, Alexey Ten (Lynn) (http://lynn.ru)
@@ -26,24 +26,28 @@ var the_script = function() {
             || type == 'slashme' || type == 'congratulation') {
             var tb = form.elements['trackback']
             if (!tb) {
+                /* кажется больше не нужно */
                 var t = form.elements['type']
                 tb = document.createElement('input')
                 tb.name = 'trackback'
                 t.parentNode.insertBefore(tb, t)
             } else if (type == 'photo') {
                 tb.checked = false
-            } else if (tb.value == '1') {
+            } else if (tb.type == 'hidden' && tb.value == '1') {
                 tb.checked = true
             }
-            tb.type = 'checkbox'
-            tb.id = 'lbl' + (new Date().getTime())
-            tb.value = 1
-            tb.style.marginRight = '3px'
-            tb.style.verticalAlign = 'middle'
-            var lbl = document.createElement('label')
-            lbl.setAttribute('for', tb.id)
-            lbl.appendChild(document.createTextNode('у себя'))
-            tb.parentNode.insertBefore(lbl, tb.nextSibling)
+
+            if (tb.type == 'hidden') {
+                tb.type = 'checkbox'
+                tb.id = 'lbl' + (new Date().getTime())
+                tb.value = 1
+                tb.style.marginRight = '3px'
+                tb.style.verticalAlign = 'middle'
+                var lbl = document.createElement('label')
+                lbl.setAttribute('for', tb.id)
+                lbl.appendChild(document.createTextNode('у себя'))
+                tb.parentNode.insertBefore(lbl, tb.nextSibling)
+            }
         }
 
         if (type == 'text') {
