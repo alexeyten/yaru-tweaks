@@ -1,9 +1,9 @@
 // ==UserScript==
 // @name           Tweak answer
-// @version        1.3.10
+// @version        1.3.11
 // @namespace      http://gm.lynn.ru/
 // @description    Кастомизация формы ответа
-// @copyright      2009, Alexey Ten (Lynn) (http://lynn.ru)
+// @copyright      2009, 2010, Alexey Ten (Lynn) (http://lynn.ru)
 // @include        http://*.ya.ru/*
 // @exclude        */update_session.xml*
 // ==/UserScript==
@@ -14,7 +14,8 @@ if (/update_session\.xml/.test(p) || /post(s_add|_edit).+\.xml/.test(p)) return
 
 var the_script = function() {
     if (typeof window.y5 == 'undefined') return
-    var form_preparer = function(form) { // {{{
+    var form_preparer = function(/* _reply, _action */) { // {{{
+        var form = this.form
         var type = form.elements['type'].value
         if (type == 'subscribe') {
             return
@@ -58,9 +59,25 @@ var the_script = function() {
             title.style.display = tb.checked ? '' : 'none'
             var title_h = y5.Dom.getDescendants(form, 'td', 'text')[1]
             title_h.insertBefore(title, title_h.firstChild)
+            var keywordsContainer = document.createElement('div')
+            keywordsContainer.className = 'keywordsContainer'
+            keywordsContainer.style.display = tb.checked ? '' : 'none'
+            title_h.appendChild(keywordsContainer)
             tb.addEventListener('click', function() {
                 title.disabled = !this.checked;
                 title.style.display = this.checked ? '' : 'none'
+                keywordsContainer.style.display = this.checked ? '' : 'none'
+                if (keywordsContainer.firstChild) return;
+                y5.require(['Ajax', 'AjaxJS', 'Dom'], function() {
+                    (new y5.Ajax(
+                        new y5.AjaxJS(g_source.id),
+                        friendsURL('ajax/keywords'),
+                        function(request) {
+                            keywordsContainer.innerHTML = request.html;
+                            y5.Components.init(keywordsContainer);
+                        }, y5.Vars.NULL, {})
+                     ).send()
+                })
             }, true)
         }
 
@@ -68,7 +85,7 @@ var the_script = function() {
             var title_h = y5.Dom.getDescendants(form, 'div', 'data')[0]
             var edit_fields = document.createElement('span')
             edit_fields.className = 'b-pseudo-link'
-            edit_fields.setAttribute('style', 'float: right; margin: 0 0 -1.5em; color:#000; font-size:0.8em')
+            edit_fields.setAttribute('style', 'float: right; margin: 0; color:#000; font-size:0.8em')
             edit_fields.appendChild(document.createTextNode('Изменить заголовок и ссылку'))
             title_h.parentNode.insertBefore(edit_fields, title_h)
             edit_fields.addEventListener('click', function() {
@@ -82,7 +99,6 @@ var the_script = function() {
                 edit_fields.parentNode.insertBefore(url, edit_fields)
                 edit_fields.parentNode.removeChild(edit_fields)
             }, true)
-
         }
 
         if (type == 'congratulation') {
@@ -148,7 +164,7 @@ var the_script = function() {
 
         p.createForm = function(/* arguments */) {
             old_createForm.apply(this, arguments)
-            form_preparer(this.form)
+            form_preparer.apply(this, arguments)
         }
         p.initActionsMenu = function(/* arguments */) {
             add_menuitems(this)
