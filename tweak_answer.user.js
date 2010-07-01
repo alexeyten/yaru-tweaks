@@ -17,6 +17,7 @@ var the_script = function() {
     var form_preparer = function(/* _reply, _action */) { // {{{
         var form = this.form
         var type = form.elements['type'].value
+        var tb = null
         if (type == 'subscribe') {
             return
         }
@@ -25,7 +26,7 @@ var the_script = function() {
             || type == 'friend' || type == 'unfriend'
             || type == 'join' || type == 'unjoin'
             || type == 'slashme' || type == 'congratulation') {
-            var tb = form.elements['trackback']
+            tb = form.elements['trackback']
             if (!tb) {
                 /* кажется больше не нужно */
                 var t = form.elements['type']
@@ -59,13 +60,18 @@ var the_script = function() {
             title.style.display = tb.checked ? '' : 'none'
             var title_h = y5.Dom.getDescendants(form, 'td', 'text')[1]
             title_h.insertBefore(title, title_h.firstChild)
-            var keywordsContainer = document.createElement('div')
-            keywordsContainer.className = 'keywordsContainer'
-            keywordsContainer.style.display = tb.checked ? '' : 'none'
-            title_h.appendChild(keywordsContainer)
             tb.addEventListener('click', function() {
                 title.disabled = !this.checked;
                 title.style.display = this.checked ? '' : 'none'
+            }, true)
+        }
+
+        if (type == 'text' || type == 'photo') {
+            var keywordsContainer = document.createElement('div')
+            keywordsContainer.className = 'keywordsContainer'
+            keywordsContainer.style.display = tb.checked ? '' : 'none'
+            y5.Dom.getAncestor(form.elements['body'], 'td').appendChild(keywordsContainer)
+            tb.addEventListener('click', function() {
                 keywordsContainer.style.display = this.checked ? '' : 'none'
                 if (keywordsContainer.firstChild) return;
                 y5.require(['Ajax', 'AjaxJS', 'Dom'], function() {
