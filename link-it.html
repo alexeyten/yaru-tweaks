@@ -1,46 +1,22 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE HTML>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Букмарклет &laquo;поделиться ссылкой&raquo;</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Букмарклет «поделиться ссылкой»</title>
 </head>
 <body>
-<h1>Букмарклет &laquo;поделиться ссылкой&raquo;</h1>
+<h1>Букмарклет «поделиться ссылкой»</h1>
 <!-- Версия для правильных браузеров -->
 <!--[if !IE]>-->
-<p><a id="link" href="javascript:(function(D,C,A,Q,f){f=D[C]('form');f.action='http://my.ya.ru/request_to_session.xml';f.method='post';D.documentElement[A](f);f.style.display='none';b=D[C]('div');b[A](getSelection().getRangeAt(0).cloneContents());b=b.innerHTML;I={body:b?'<'+Q+b+'</'+Q:'',title:D.title,URL:D.location,YARU_retpath:'/posts_add_link.xml'};for(e in I){E=D[C]('input');E.name=e;E.value=I[e];f[A](E)}f.submit()})(document,'createElement','appendChild','blockquote>')">Поделится ссылкой</a></p>
+<p>
+<a href='javascript:(function(D,C,A,Q,f,b,v,e){f=D[C]("form");f.action="http://my.ya.ru/request_to_session.xml";f.method="post";f.style.display="none";f.target="_blank";D.documentElement[A](f);try{b=D[C]("div");b[A](getSelection().getRangeAt(0).cloneContents());b=b.innerHTML}catch(x){b=""}v={body:b?"<"+Q+b+"</"+Q:"",title:D.title,URL:D.location,YARU_retpath:"/posts_add_link.xml"};for(b in v){e=D[C]("input");e.name=b;e.value=v[b];f[A](e)}f.submit()})(document, "createElement", "appendChild", "blockquote>")'>Поделится ссылкой</a>
+</p>
 <!--<![endif]-->
 <!-- Версия для IE -->
 <!--[if IE]>
 <p>
-<a href="javascript:(function(D,C,A,Q,f){f=D[C]('form');f.action='http://my.ya.ru/request_to_session.xml';f.method='post';(D.documentElement||D.body)[A](f);f.style.display='none';b=D.selection.createRange().htmlText;I={body:b?'<'+Q+b+'</'+Q:'',title:D.title,URL:D.location,YARU_retpath:'/posts_add_link.xml'};for(e in I){E=D[C]('input');E.name=e;E.value=I[e];f[A](E)}f.submit()})(document,'createElement','appendChild','blockquote>')">Поделится ссылкой</a>
+<a href='javascript:(function(D,C,A,Q,f,b,v,e){f=D[C]("form");f.action="http://my.ya.ru/request_to_session.xml";f.method="post";f.style.display="none";f.target="_blank";(D.documentElement||D.body)[A](f);try{b=D.selection.createRange().htmlText}catch(x){b=""}v={body:b?"<"+Q+b+"</"+Q:"",title:D.title,URL:D.location,YARU_retpath:"/posts_add_link.xml"};for(b in v){e=D[C]("input");e.name=b;e.value=v[b];f[A](e)}f.submit()})(document, "createElement", "appendChild", "blockquote>")'>Поделится ссылкой</a>
 </p>
 <![endif]-->
-
-<!-- Sources:
-javascript:(function (D,C,A,Q,f) {
-f=D[C]('form');
-f.action='http://my.ya.ru/request_to_session.xml';
-f.method='post';
-f.style.display='none';
-D.documentElement[A](f);
-b=D[C]('div');b[A](getSelection().getRangeAt(0).cloneContents());b=b.innerHTML;
-//IE: (D.documentElement||D.body)[A](f);
-//IE: b=D.selection.createRange().htmlText;
-I={
-	body: b?'<'+Q+b+'</'+Q:'',
-	title: D.title,
-	URL: D.location,
-	YARU_retpath: '/posts_add_link.xml'
-};
-for (e in I) {
-	E=D[C]('input');
-	E.name = e;
-	E.value = I[e];
-	f[A](E);
-}
-f.submit();
-})(document,'createElement','appendChild','blockquote>')
--->
 </body>
 </html>
